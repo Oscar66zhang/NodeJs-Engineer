@@ -1,0 +1,12 @@
+{
+  "name": "mycli",
+  "version": "1.0.0",
+  "bin": {
+    "mycli": "./1.Node脚手架篇-打造自己的脚手架工具/bin/cli.js"
+  },
+  "dependencies": {
+    "commander": "^14.0.3",
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^14.0.0"
+  }
+}
