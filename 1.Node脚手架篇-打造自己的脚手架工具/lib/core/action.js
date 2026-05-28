@@ -1,5 +1,6 @@
 var inquirer = require('inquirer').default;
 const download = require('download-git-repo');
+const ora = require('ora').default;
 var config = require('../../config');
 const myAction = (project, args) => {
     // console.log(project);
