@@ -10,5 +10,9 @@
     "download-git-repo": "^3.0.2",
     "inquirer": "^14.0.0",
     "ora": "^9.4.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.9",
+    "@types/node": "^25.9.1"
   }
 }

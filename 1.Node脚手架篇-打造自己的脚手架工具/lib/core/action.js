@@ -3,9 +3,6 @@ const download = require('download-git-repo');
 const ora = require('ora').default;
 var config = require('../../config');
 const myAction = (project, args) => {
-    // console.log(project);
-    // console.log(args);
-    //express koa egg
     inquirer.prompt([
         {
             type: 'rawlist',
@@ -14,9 +11,14 @@ const myAction = (project, args) => {
             message: '请选择你要使用的框架',
         }
     ]).then((answer) => {
-        console.log(answer);
-        download('direct:' + config.foramworkUrl[answer.framwork], project, { clone: true }, function (err) {
-            console.log(err ? 'Error' : 'Success');
+        const spinner = ora('正在下载模板...').start();
+        download(config.foramworkUrl[answer.framwork], project, (err) => {
+            if (err) {
+                spinner.fail('下载失败');
+                console.log(err);
+            } else {
+                spinner.succeed('下载成功');
+            }
         })
     });
 }
