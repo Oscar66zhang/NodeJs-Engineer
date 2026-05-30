@@ -10,17 +10,31 @@ const { promisify } = require("util");
 const readFile = promisify(fs.readFile);
 
 const app = express();
+
+app.use(express.urlencoded);
+
 app.get("/", async function (req, res) {
   try {
     let back = await readFile("./db.json", "utf-8");
     const jsonObj = JSON.parse(back);
     res.send(jsonObj);
-  } catch { 
+  } catch {
     res.status(500).json({ error });
   }
 });
 
-// app.post();
+app.post("/", async (req, res) => {
+  //   console.log(req.header);
+  let body = req.body;
+  if (!body) {
+    res.status(403).json({
+      error: "缺少用户信息",
+    });
+  }
+  let back = await readFile("./db.json", "utf-8");
+  const jsonObj = JSON.parse(back);
+  jsonObj.users[jsonObj.users.length - 1].id + 1;
+});
 
 app.listen(3000, () => {
   console.log("Run http://127.0.0.1:3000");
