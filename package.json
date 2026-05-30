@@ -9,6 +9,7 @@
     "commander": "^14.0.3",
     "download-git-repo": "^3.0.2",
     "inquirer": "^14.0.0",
+    "mongodb": "^7.2.0",
     "ora": "^9.4.0"
   },
   "devDependencies": {
