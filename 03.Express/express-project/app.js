@@ -1,25 +1,18 @@
 const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const router = require('./router');
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+app.use(morgan('dev'));
+app.use('/api/v1', router);
 
-app.get('/', (req, res) => {
-    console.log(`${req.method} request received at ${req.url},${Date.now()}`);
-    res.send('/index');
+const port = process.env.PORT || 3000;
+
+// 启动服务，监听端口
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
-
-
-app.get('/register', (req, res) => {
-    console.log(`${req.method} request received at ${req.url},${Date.now()}`);
-    res.send('/register');
-});
-
-
-app.get('/login', (req, res) => {
-    console.log(`${req.method} request received at ${req.url},${Date.now()}`);
-    res.send('/login');
-});
-
-app.listen(PORT, () => {
-    console.log(`Server is running on port http://localhost:${PORT}`);
-}); 
